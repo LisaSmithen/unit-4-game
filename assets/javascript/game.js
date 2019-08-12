@@ -1,18 +1,16 @@
+$( document ).ready(function(){
 
-//Function picks a random number at the start of the game. The number should be between 19 and 120
-    $('#randomNumber').text(Random);
     var Random=Math.floor(Math.random()*101+19)
     $('#randomNumber').text(Random);
-    // Appending random number to the randomNumber id to show on screen
-    // The Random number has to be between 1 - 12
+   
     var num1= Math.floor(Math.random()*11+1)
     var num2= Math.floor(Math.random()*11+1)
     var num3= Math.floor(Math.random()*11+1)
     var num4= Math.floor(Math.random()*11+1)
 
-    var userTotal= 0;
-    var Survival= 0;
-    var Doomed= 0;
+    var userTotal = 0;
+    var Survival = 0;
+    var Doomed = 0;
    $('#numberSurvived').text(Survival);
    $('#numberDoomed').text(Doomed);
 
@@ -32,55 +30,66 @@ function reset(){
     } 
 
 
-//Player/User clicking on Gemstones
 
-$("#one").on ("click", function(){
+function winner() {
+alert("Humanity Won!");
+  Survival++; 
+  $('#numberSurvived').text(Survival);
+  reset();
+}
+
+function loser(){
+alert ("We Are Doomed!");
+  Doomed++;
+  $('#numberDoomed').text(Doomed);
+  reset()
+}
+
+  $('#one').on ('click', function(){
     userTotal = userTotal + num1;
     console.log("New userTotal= " + userTotal);
-    $("#finalScore").text(userTotal);
-          //sets win/lose conditions
+    $('#finalScore').text(userTotal); 
+          
         if (userTotal == Random){
-          Survival();
+          winner();
         }
         else if ( userTotal > Random){
-        Doomed();
-        }  
-  }) 
-  $("#two").on ("click", function(){
+          loser();
+        }   
+  })  
+  $('#two').on ('click', function(){
     userTotal = userTotal + num2;
     console.log("New userTotal= " + userTotal);
-    $("#finalScore").text(userTotal);
+    $('#finalScore').text(userTotal); 
         if (userTotal == Random){
-         Survival();
+          winner();
         }
         else if ( userTotal > Random){
-          Doomed();
-        }
-  }) 
-  
-  $("#three").on ("click", function(){
+          loser();
+        } 
+  })  
+  $('#three').on ('click', function(){
     userTotal = userTotal + num3;
     console.log("New userTotal= " + userTotal);
-    $("#finalScore").text(userTotal);
-    if (userTotal == Random){
-        Survival();
-       }
-       else if ( userTotal > Random){
-         Doomed();
-       }
- }) 
+    $('#finalScore').text(userTotal);
 
-
-
-    $("#four").on ("click", function(){
-        userTotal = userTotal + num4;
-        console.log("New userTotal= " + userTotal);
-        $("#finalScore").text(userTotal);
-         
-              if (userTotal == Random){
-              Survival();
-            }
-            else if ( userTotal > Random){
-             Doomed();
-            }
-       })
+          if (userTotal == Random){
+          winner();
+        }
+        else if ( userTotal > Random){
+          loser();
+        } 
+  })  
+  $('#four').on ('click', function(){
+    userTotal = userTotal + num4;
+    console.log("New userTotal= " + userTotal);
+    $('#finalScore').text(userTotal); 
+      
+          if (userTotal == Random){
+          winner();
+        }
+        else if ( userTotal > Random){
+          loser();
+        }
+  });   
+}); 
